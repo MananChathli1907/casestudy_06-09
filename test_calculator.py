@@ -19,5 +19,13 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(multiply(-1, -1), 1)
 
 
+    def test_divide(self):
+        self.assertEqual(divide(10, 2), 5)
+        self.assertEqual(divide(-1, 1), -1)
+        self.assertEqual(divide(-1, -1), 1)
+        with self.assertRaises(ValueError):
+            divide(10, 0)  # This should raise a ValueError
+
+
 if __name__ == '__main__':
     unittest.main()

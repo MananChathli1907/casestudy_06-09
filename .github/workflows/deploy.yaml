@@ -24,6 +24,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest  # Install pytest for running tests
         pip install flask  # Install Flask for the backend
+        pip install flask-cors  # Install Flask-CORS for handling CORS
 
     - name: Build the calculator application
       run: |
@@ -59,3 +60,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build
+

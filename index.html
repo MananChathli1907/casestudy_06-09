@@ -39,7 +39,7 @@
             <option value="divide">Divide</option>
         </select>
         <button onclick="calculate()">Calculate</button>
-        <p id="result"></p>
+        <p id="result"> </p>
     </div>
     <script>
         async function calculate() {
@@ -47,17 +47,28 @@
             const num2 = parseFloat(document.getElementById('num2').value);
             const operation = document.getElementById('operation').value;
 
-            const response = await fetch(`https://your-backend-url/calculate`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ num1, num2, operation })
-            });
+            try {
+                const response = await fetch(`http://localhost:5000/calculate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ num1, num2, operation })
+                });
 
-            const result = await response.json();
-            document.getElementById('result').innerText = `Result: ${result}`;
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+                document.getElementById('result').innerText = `Result: ${result.result}`;
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+                document.getElementById('result').innerText = 'Error: Could not calculate';
+            }
         }
     </script>
 </body>
 </html>
+
+
