@@ -1,5 +1,3 @@
-# test_calculator.py
-
 import unittest
 from calculator import add, subtract, multiply, divide
 
@@ -25,7 +23,7 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(divide(-1, 1), -1)
         self.assertEqual(divide(-1, -1), 1)
         with self.assertRaises(ValueError):
-            divide(10, 0)
+            divide(10, 0)  # This should raise a ValueError
 
 if __name__ == '__main__':
     unittest.main()
