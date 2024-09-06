@@ -33,3 +33,11 @@ jobs:
       run: |
         echo "Running unit tests ..."
         pytest test_calculator.py
+
+    - name: Install xvfb
+      run: sudo apt-get install -y xvfb
+
+    - name: Run GUI application test
+      run: |
+        echo "Testing the GUI application ..."
+        xvfb-run --auto-servernum -- python calculator_gui.py
